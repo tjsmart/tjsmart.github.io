@@ -5,7 +5,7 @@ export function Term() {
     let [history, setHistory] = useState(new Array());
     const addHistory = (item: string) => setHistory([...history, item]);
     return (
-        <div className="h-1 m-3">
+        <div className="h-1 m-3 font-mono">
             <label>
                 <History history={history} />
                 <UserInput addHistory={addHistory} />
@@ -15,7 +15,12 @@ export function Term() {
 }
 
 function Prompt() {
-    return "earthling@tjsmart.github.io:~$ ";
+    return (
+        <span>
+            <span className="text-green-500">earthling@tjsmart.github.io</span>
+            {" > "}
+        </span>
+    );
 }
 
 type HistoryProps = {
