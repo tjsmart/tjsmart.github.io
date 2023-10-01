@@ -1,5 +1,5 @@
 "use client"; // required by useState
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 
 export function Term() {
     let [history, setHistory] = useState(new Array());
@@ -8,6 +8,7 @@ export function Term() {
         <div className="h-1 m-3 font-mono">
             <label>
                 <History history={history} />
+                <Prompt />
                 <UserInput addHistory={addHistory} />
             </label>
         </div>
@@ -48,6 +49,7 @@ type InputProps = {
 
 function UserInput({ addHistory }: InputProps) {
     let [command, setCommand] = useState("");
+    const inputRef = useRef<HTMLInputElement>(null);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setCommand(e.target.value);
@@ -74,20 +76,34 @@ function UserInput({ addHistory }: InputProps) {
         }
     };
 
+    const handleParentNodeKeyDown = (e: any) => {
+        if (
+            (e.key == "Enter" || e.key == "Escape") &&
+            inputRef.current != document.activeElement
+        ) {
+            inputRef.current && inputRef.current.focus();
+        }
+    };
+    useEffect(() => {
+        document.addEventListener("keydown", handleParentNodeKeyDown);
+        return () => {
+            document.removeEventListener("keydown", handleParentNodeKeyDown);
+        };
+        // TODO: is parentNode correct here? Want to limit this behavior somehow...
+    }, [inputRef.current?.parentNode]);
+
     return (
-        <div>
-            <Prompt />
-            <input
-                name="CommandInput"
-                className="bg-transparent outline-none"
-                value={command}
-                onChange={handleChange}
-                onKeyDown={handleKeyDown}
-                autoFocus={true}
-                autoComplete="off"
-                autoCapitalize="off"
-                spellCheck="false"
-            />
-        </div>
+        <input
+            name="CommandInput"
+            className="bg-transparent outline-none"
+            ref={inputRef}
+            value={command}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+            autoFocus={true}
+            autoComplete="off"
+            autoCapitalize="off"
+            spellCheck="false"
+        />
     );
 }
