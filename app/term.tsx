@@ -1,15 +1,52 @@
 "use client"; // required by useState
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 
+type HistoryItem = {
+    command: string;
+    output: string;
+};
+
+type CommandHandler = (command: string) => string;
+
+const commandMap = new Map<string, CommandHandler>();
+
+export function registerCommand(command: string, handler: CommandHandler) {
+    commandMap.set(command, handler);
+}
+
+registerCommand("hello", () => "Hi 👋");
+
+function handleCommand(command: string): string {
+    // TODO: parse command from args...
+    const handler = commandMap.get(command);
+    if (!handler) {
+        return `command not found: ${command}`;
+    }
+
+    return handler(command);
+}
+
 export function Term() {
-    let [history, setHistory] = useState(new Array());
-    const addHistory = (item: string) => setHistory([...history, item]);
+    let [history, setHistory] = useState(new Array<HistoryItem>());
+    let [submittedCommand, setSubmittedCommand] = useState<string | null>(null);
+
+    if (submittedCommand) {
+        setHistory([
+            ...history,
+            {
+                command: submittedCommand,
+                output: handleCommand(submittedCommand),
+            },
+        ]);
+        setSubmittedCommand(null);
+    }
+
     return (
         <div className="h-1 m-3 font-mono">
             <label>
                 <History history={history} />
                 <Prompt />
-                <UserInput addHistory={addHistory} />
+                <UserInput setSubmittedCommand={setSubmittedCommand} />
             </label>
         </div>
     );
@@ -25,18 +62,24 @@ function Prompt() {
 }
 
 type HistoryProps = {
-    history: string[];
+    history: HistoryItem[];
 };
 
 function History({ history }: HistoryProps) {
     return (
         <div>
-            {history.map((command: string) => (
+            {history.map((item: HistoryItem, index: number) => (
                 // added key here to avoid eslint, don't know what it do
-                <div key={command}>
+                <div key={`history-${index}`}>
                     <Prompt />
-                    <text>{command}</text>
+                    {item.command}
                     <br />
+                    {item.output && (
+                        <>
+                            {item.output}
+                            <br />
+                        </>
+                    )}
                 </div>
             ))}
         </div>
@@ -44,10 +87,11 @@ function History({ history }: HistoryProps) {
 }
 
 type InputProps = {
-    addHistory: (command: string) => void;
+    setSubmittedCommand: (command: string | null) => void;
 };
 
-function UserInput({ addHistory }: InputProps) {
+function UserInput({ setSubmittedCommand }: InputProps) {
+    // TODO: checking if there is already a submitted command may be important...
     let [command, setCommand] = useState("");
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -69,7 +113,7 @@ function UserInput({ addHistory }: InputProps) {
             }
             case "Enter": {
                 e.preventDefault();
-                addHistory(command);
+                setSubmittedCommand(command);
                 setCommand("");
                 break;
             }
