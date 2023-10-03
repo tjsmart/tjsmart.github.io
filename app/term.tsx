@@ -15,6 +15,7 @@ export function registerCommand(command: string, handler: CommandHandler) {
 }
 
 registerCommand("hello", () => "Hi 👋");
+registerCommand("avail", () => Array.from(commandMap.keys()).join("\n"));
 
 function handleCommand(command: string): string {
     // TODO: parse command from args...
@@ -74,12 +75,18 @@ function History({ history }: HistoryProps) {
                     <Prompt />
                     {item.command}
                     <br />
-                    {item.output && (
-                        <>
-                            {item.output}
-                            <br />
-                        </>
-                    )}
+                    {/*
+                        TODO: this implementation assumes the output is a string
+                        need to expand this to allow users to produce jsx?
+                    */}
+                    {item.output &&
+                        item.output.split("\n").map((line: string) => (
+                            <>
+                                {line}
+
+                                <br />
+                            </>
+                        ))}
                 </div>
             ))}
         </div>
