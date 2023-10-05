@@ -72,6 +72,7 @@ registerCommand(
                 return `no help found for: ${command.name}`;
             }
             // TODO: formatting?
+            // TODO: should length of line be the length of 'Help on command.name'? Or maybe length of screen?
             return `Help on \`${command.name}\`\n--------------------------------------------------------------------------------\n${command.description}`;
         },
         "Display help on the provided command, e.g. `help what`",
@@ -110,7 +111,10 @@ export function Term() {
             <label>
                 <History history={history} />
                 <Prompt />
-                <UserInput setSubmittedCommand={setSubmittedCommand} />
+                <UserInput
+                    setSubmittedCommand={setSubmittedCommand}
+                    history={history}
+                />
             </label>
         </div>
     );
@@ -158,11 +162,16 @@ function History({ history }: HistoryProps) {
 
 type InputProps = {
     setSubmittedCommand: (command: string | null) => void;
+    history: HistoryItem[];
 };
 
-function UserInput({ setSubmittedCommand }: InputProps) {
+function UserInput({ setSubmittedCommand, history }: InputProps) {
     // TODO: checking if there is already a submitted command may be important...
     let [command, setCommand] = useState("");
+    // store off a comand when user starts scrolling history of commands
+    let [storedCommand, setStoredCommand] = useState("");
+    let [idx, setIdx] = useState(history.length - 1);
+
     const inputRef = useRef<HTMLInputElement>(null);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -173,18 +182,53 @@ function UserInput({ setSubmittedCommand }: InputProps) {
         switch (e.key) {
             case "ArrowUp": {
                 e.preventDefault();
-                setCommand("foo");
+                let prev;
+                while (
+                    (prev = history[idx - 1]) &&
+                    prev &&
+                    prev.command == command
+                ) {
+                    idx -= 1;
+                    setIdx(idx);
+                    continue;
+                }
+                if (!prev) {
+                    break;
+                }
+                if (idx == history.length) {
+                    setStoredCommand(command);
+                }
+                setCommand(prev.command);
+                setIdx(idx - 1);
                 break;
             }
             case "ArrowDown": {
                 e.preventDefault();
-                setCommand("bar");
+                let next;
+                while (
+                    (next = history[idx + 1]) &&
+                    next &&
+                    next.command == command
+                ) {
+                    idx += 1;
+                    setIdx(idx);
+                    continue;
+                }
+                if (!next) {
+                    setCommand(storedCommand);
+                    setIdx(history.length);
+                    break;
+                }
+
+                setCommand(next.command);
+                setIdx(idx + 1);
                 break;
             }
             case "Enter": {
                 e.preventDefault();
                 setSubmittedCommand(command);
                 setCommand("");
+                setIdx(history.length + 1);
                 break;
             }
         }
