@@ -18,17 +18,28 @@ export class Command {
 
 const commandMap = new Map<string, Command>();
 
+/**
+ * Register a command to the factory.
+ *
+ * @param command - the command to be registered
+ */
 export function registerCommand(command: Command) {
+    // console.log(commandMap);
+    if (commandMap.has(command.name)) {
+        throw new Error(`Command ${command.name} is already registered!`);
+    }
     commandMap.set(command.name, command);
 }
 
-export function getCommand(name: string): Command | null {
-    return commandMap.get(name) || null;
-}
-
+/**
+ * Handles the provided command line.
+ *
+ * @param commandLine - the input text to be handled
+ * @returns The output from the command (if any)
+ */
 export function handleCommand(commandLine: string): string {
     // TODO: better parsing...
-    let [name, ...args] = commandLine.split(" ");
+    let [name, ...args] = commandLine.trim().split(" ");
 
     const command = commandMap.get(name);
     if (!command) {
@@ -41,7 +52,7 @@ export function handleCommand(commandLine: string): string {
 const lb =
     "--------------------------------------------------------------------------------";
 
-let help = new Command(
+const help = new Command(
     "help",
     (args: string[]): string => {
         if (args.length == 0) {
@@ -57,7 +68,7 @@ let help = new Command(
             // TODO: error
             return "Too many arguments";
         }
-        let command = getCommand(args[0]);
+        let command = commandMap.get(args[0]);
         if (!command) {
             // TODO: error
             return `command not found: ${args[0]}`;
@@ -74,3 +85,8 @@ let help = new Command(
 );
 
 registerCommand(help);
+
+if (process.env["NODE_DEV"] == "TEST") {
+    module.exports.help = help;
+    module.exports.commandMap = commandMap;
+}
