@@ -1,6 +1,6 @@
 import { Command, registerCommand } from "./factory";
 
-let hello = new Command(
+const hello = new Command(
     "hello",
     // TODO: accept a parameter/argument for which language
     () => {
@@ -86,3 +86,8 @@ const greetings: Greeting[] = [
         pronunciation: "jayn doh-brih",
     },
 ];
+
+if (process.env["NODE_DEV"] == "TEST") {
+    module.exports.hello = hello;
+    module.exports.greetings = greetings;
+}
