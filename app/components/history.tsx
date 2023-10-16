@@ -2,7 +2,7 @@ import { Prompt } from "./prompt";
 
 export type HistoryItem = {
     command: string;
-    output: string;
+    output: JSX.Element;
 };
 
 type HistoryProps = {
@@ -18,18 +18,7 @@ export function History({ history }: HistoryProps) {
                     <Prompt />
                     {item.command}
                     <br />
-                    {/*
-                        TODO: this implementation assumes the output is a string
-                        need to expand this to allow users to produce jsx?
-                    */}
-                    {item.output &&
-                        item.output.split("\n").map((line: string) => (
-                            <>
-                                {line}
-
-                                <br />
-                            </>
-                        ))}
+                    {item.output && item.output}
                 </div>
             ))}
         </div>

@@ -1,4 +1,4 @@
-type CommandCallback = (args: string[]) => string;
+type CommandCallback = (args: string[]) => string | JSX.Element;
 
 export class Command {
     public name: string;
@@ -37,16 +37,29 @@ export function registerCommand(command: Command) {
  * @param commandLine - the input text to be handled
  * @returns The output from the command (if any)
  */
-export function handleCommand(commandLine: string): string {
+export function handleCommand(commandLine: string): JSX.Element {
     // TODO: better parsing...
     let [name, ...args] = commandLine.trim().split(" ");
 
     const command = commandMap.get(name);
     if (!command) {
-        return `command not found: ${name}`;
+        return <span> {`command not found: ${name}`} </span>;
     }
 
-    return command.callback(args);
+    const output = command.callback(args);
+    if (typeof output === "string") {
+        return (
+            <>
+                {output.split("\n").map((line: string) => (
+                    <>
+                        {line}
+                        <br />
+                    </>
+                ))}
+            </>
+        );
+    }
+    return output;
 }
 
 const lb =
