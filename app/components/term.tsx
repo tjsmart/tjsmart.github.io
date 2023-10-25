@@ -12,13 +12,20 @@ export function Term() {
     );
 
     if (submittedCommand) {
-        setHistory([
-            ...history,
-            {
-                command: submittedCommand,
-                output: handleCommand(submittedCommand),
-            },
-        ]);
+        if (submittedCommand === "clear") {
+            // TODO: I'd prefer clear not to actually wipe out the history but
+            // this is a dead simple implementation and a true clear behavior
+            // will likely be a good deal of work.
+            setHistory([]);
+        } else {
+            setHistory([
+                ...history,
+                {
+                    command: submittedCommand,
+                    output: handleCommand(submittedCommand),
+                },
+            ]);
+        }
         setSubmittedCommand(null);
     }
 
