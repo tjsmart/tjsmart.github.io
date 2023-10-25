@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`contact contact returns a list of contacts 1`] = `
+[
+  <div>
+    <a
+      className="hover:text-red-500 underline"
+      href="mailto:tjsmart@ucsc.edu"
+    >
+      <i
+        className="fa fa-envelope"
+      />
+       email - tjsmart@ucsc.edu
+    </a>
+    <br />
+  </div>,
+  <div>
+    <a
+      className="hover:text-red-500 underline"
+      href="https://www.github.com/tjsmart"
+    >
+      <i
+        className="fa fa-github"
+      />
+       github - tjsmart
+    </a>
+    <br />
+  </div>,
+  <div>
+    <a
+      className="hover:text-red-500 underline"
+      href="https://www.linkedin.com/in/tyler-smart-0a4a419b"
+    >
+      <i
+        className="fa fa-linkedin-square"
+      />
+       linkedin - Tyler Smart
+    </a>
+    <br />
+  </div>,
+  <div>
+    <a
+      className="hover:text-red-500 underline"
+      href="https://www.scholar.google.com/citations?hl=en&user=r9supmkAAAAJ"
+    >
+      <i
+        className="fa fa-graduation-cap"
+      />
+       google scholar - Tyler Smart
+    </a>
+    <br />
+  </div>,
+]
+`;

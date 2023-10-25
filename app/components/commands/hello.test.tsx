@@ -1,4 +1,4 @@
-import { registerCommand, handleCommand, Command } from "./factory";
+import { Command } from "./factory";
 import * as mut from "./hello";
 
 type Greeting = {
