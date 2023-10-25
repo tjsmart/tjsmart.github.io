@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`welcome welcome snapshot 1`] = `
+[
+  <h1
+    className="bg-red-950 text-center"
+  >
+    Welcome to Tyler Smart's personal website! 🎉
+  </h1>,
+  <p>
+    I've created this website inspired by modern terminal applications.
+  </p>,
+  <p>
+    To get started, try running the \`help\` command to see what commands are available.
+  </p>,
+]
+`;

@@ -7,7 +7,9 @@ import { UserInput } from "./user_input";
 
 export function Term() {
     let [history, setHistory] = useState(new Array<HistoryItem>());
-    let [submittedCommand, setSubmittedCommand] = useState<string | null>(null);
+    let [submittedCommand, setSubmittedCommand] = useState<string | null>(
+        "welcome",
+    );
 
     if (submittedCommand) {
         setHistory([

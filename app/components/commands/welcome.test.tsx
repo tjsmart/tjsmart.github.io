@@ -1,13 +1,13 @@
 import renderer from "react-test-renderer";
 import { Command } from ".";
-import * as mut from "./contact";
+import * as mut from "./welcome";
 
 // @ts-ignore
-const contact: Command = mut.contact;
+const welcome: Command = mut.welcome;
 
-describe("contact", () => {
-    test("contact snapshot", () => {
-        const result = contact.callback([]);
+describe("welcome", () => {
+    test("welcome snapshot", () => {
+        const result = welcome.callback([]);
         if (typeof result == "string") {
             fail("Expected result to not to be of type string");
         }

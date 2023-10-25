@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`contact contact returns a list of contacts 1`] = `
+exports[`contact contact snapshot 1`] = `
 [
   <div>
     <a
