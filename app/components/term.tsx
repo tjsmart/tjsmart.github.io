@@ -26,11 +26,13 @@ export function Term() {
         <div className="h-1 m-3 font-mono">
             <label>
                 <History history={history} />
-                <Prompt />
-                <UserInput
-                    setSubmittedCommand={setSubmittedCommand}
-                    history={history}
-                />
+                <div className="flex flex-row">
+                    <Prompt />
+                    <UserInput
+                        setSubmittedCommand={setSubmittedCommand}
+                        history={history}
+                    />
+                </div>
             </label>
         </div>
     );

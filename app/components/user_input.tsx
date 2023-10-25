@@ -94,7 +94,7 @@ export function UserInput({ setSubmittedCommand, history }: InputProps) {
     return (
         <input
             name="CommandInput"
-            className="bg-transparent outline-none"
+            className="bg-transparent outline-none grow"
             ref={inputRef}
             value={command}
             onChange={handleChange}
