@@ -23,7 +23,7 @@ export function Term() {
     }
 
     return (
-        <div className="h-1 m-3 font-mono">
+        <div className="h-max m-3 font-mono flex flex-col-reverse">
             <label>
                 <History history={history} />
                 <div className="flex flex-row">
