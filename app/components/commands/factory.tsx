@@ -31,6 +31,8 @@ export function registerCommand(command: Command) {
     commandMap.set(command.name, command);
 }
 
+let outputLine = 0;
+
 /**
  * Handles the provided command line.
  *
@@ -50,12 +52,15 @@ export function handleCommand(commandLine: string): JSX.Element {
     if (typeof output === "string") {
         return (
             <>
-                {output.split("\n").map((line: string) => (
-                    <>
-                        {line}
-                        <br />
-                    </>
-                ))}
+                {output.split("\n").map((line) => {
+                    outputLine += 1;
+                    return (
+                        <div key={`output-line-${outputLine}`}>
+                            {line}
+                            <br />
+                        </div>
+                    );
+                })}
             </>
         );
     }
@@ -94,7 +99,7 @@ const help = new Command(
         // TODO: should length of line be the length of 'Help on command.name'? Or maybe length of screen?
         return `Help on \`${command.name}\`\n${lb}\n${command.description}`;
     },
-    "Display help on the provided command, e.g. `help hello`",
+    "Display help on the provided command, e.g., `help hello`.",
 );
 
 registerCommand(help);

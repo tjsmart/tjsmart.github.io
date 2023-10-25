@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`factory handle unknown command output 1`] = `
+<span>
+   
+  command not found: i_am_unknown
+   
+</span>
+`;
+
+exports[`factory registered command executes expected callback 1`] = `
+<div>
+  test command!
+  <br />
+</div>
+`;
+
+exports[`factory registered command executes expected callback 2`] = `
+<div>
+  test command!foo bar baz
+  <br />
+</div>
+`;

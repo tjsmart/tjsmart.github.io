@@ -55,7 +55,7 @@ const contact = new Command(
             </>
         );
     },
-    `How to contact/follow me, e.g, ${contacts
+    `How to contact/follow me, e.g., ${contacts
         .slice(0, 2)
         .map((contact) => contact.kind)
         .join(", ")}.`,

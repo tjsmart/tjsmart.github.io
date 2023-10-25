@@ -9,7 +9,7 @@ const hello = new Command(
     },
     // TODO: list languages here
     // TODO: these should really include options... perhaps argument parsing should be done by command...
-    "I'll say hi back in a random language 😜",
+    "I'll say hi back in a random language 😜.",
 );
 
 registerCommand(hello);
