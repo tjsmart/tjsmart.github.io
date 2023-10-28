@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "NODE_DEV=TEST jest --watch"
+    "test": "NODE_DEV=TEST jest"
   },
   "dependencies": {
     "@types/node": "20.5.4",
