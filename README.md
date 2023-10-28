@@ -5,9 +5,7 @@
 Source code for my personal website. This app is designed to replicate modern terminal applications
 and host information about me.
 
-
 ## Getting Started
-
 
 ### Development serving
 
@@ -20,7 +18,6 @@ npm run dev
 ```
 
 Then, open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
 
 ### Running tests
 
