@@ -4,7 +4,7 @@ const about = new Command(
     "about",
     () => {
         return (
-            <div className="w-1/3 text-justify">
+            <div className="w-[600px] text-justify">
                 <p>
                     {`Hi there 👋! I'm Tyler, a software engineer with a passion
                     for creating innovative solutions. With over 8 years of
