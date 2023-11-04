@@ -6,7 +6,7 @@ const welcome = new Command(
         return (
             <>
                 <h1 className="bg-orange-800 text-center">
-                    Welcome to Tyler Smart's personal website! 🎉
+                    {`Welcome to Tyler Smart's personal website! 🎉`}
                 </h1>
                 <p>This website is inspired by modern terminal applications.</p>
                 <p>

@@ -6,7 +6,7 @@ const about = new Command(
         return (
             <div className="w-1/3 text-justify">
                 <p>
-                    Hi there 👋! I'm Tyler, a software engineer with a passion
+                    {`Hi there 👋! I'm Tyler, a software engineer with a passion
                     for creating innovative solutions. With over 8 years of
                     experience in Python 🐍, I possess a deep knowledge of its
                     standard library, typing system, popular third-party
@@ -15,7 +15,7 @@ const about = new Command(
                     computational physics for predicting quantum mechanical
                     properties of materials, has equipped me with a unique
                     perspective in leveraging technology for quantum information
-                    and quantum computation 🌠.
+                    and quantum computation 🌠.`}
                 </p>
 
                 <br />
@@ -32,19 +32,19 @@ const about = new Command(
                 <br />
 
                 <p>
-                    On this website, you'll find examples of my work, ranging
+                    {`On this website, you'll find examples of my work, ranging
                     from elegant Python code to sophisticated quantum
                     simulations. Join me 🙌 on this journey as we explore the
                     fascinating world of software engineering, computational
-                    physics, and more!
+                    physics, and more!`}
                 </p>
 
                 <br />
 
                 <p>
-                    Feel free to reach out to me at tjsmart@ucsc.edu to discuss
+                    {`Feel free to reach out to me at tjsmart@ucsc.edu to discuss
                     potential collaborations or exciting projects. Let's build a
-                    brighter future together using technology and innovation! 🎉
+                    brighter future together using technology and innovation! 🎉`}
                 </p>
             </div>
         );
