@@ -3,8 +3,10 @@ import { Command, registerCommand } from "./factory";
 const about = new Command(
     "about",
     () => {
+        const width = window.screen.width;
+        const wclass = width > 600 ? "w-[600px]" : "w-fill";
         return (
-            <div className="w-[600px] text-justify">
+            <div className={`${wclass} text-justify`}>
                 <p>
                     {`Hi there 👋! I'm Tyler, a software engineer with a passion
                     for creating innovative solutions. With over 8 years of

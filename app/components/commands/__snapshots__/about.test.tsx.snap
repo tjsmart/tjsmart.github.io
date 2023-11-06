@@ -2,7 +2,7 @@
 
 exports[`about about snapshot 1`] = `
 <div
-  className="w-[600px] text-justify"
+  className="w-fill text-justify"
 >
   <p>
     Hi there 👋! I'm Tyler, a software engineer with a passion
