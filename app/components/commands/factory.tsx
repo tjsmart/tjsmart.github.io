@@ -50,6 +50,9 @@ export function handleCommand(commandLine: string): JSX.Element {
 
     const output = command.callback(args);
     if (typeof output === "string") {
+        if (!output) {
+            return <></>;
+        }
         return (
             <>
                 {output.split("\n").map((line) => {
