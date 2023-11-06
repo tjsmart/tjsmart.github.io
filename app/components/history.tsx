@@ -13,8 +13,7 @@ export function History({ history }: HistoryProps) {
     return (
         <div>
             {history.map((item: HistoryItem, index: number) => (
-                // added key here to avoid eslint, don't know what it do
-                <div key={`history-${index}`}>
+                <div key={index}>
                     <Prompt />
                     {item.command}
                     <br />

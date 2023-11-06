@@ -55,7 +55,7 @@ export function handleCommand(commandLine: string): JSX.Element {
                 {output.split("\n").map((line) => {
                     outputLine += 1;
                     return (
-                        <div key={`output-line-${outputLine}`}>
+                        <div key={outputLine}>
                             {line}
                             <br />
                         </div>

@@ -40,7 +40,7 @@ const contact = new Command(
         return (
             <>
                 {contacts.map((contact, index) => (
-                    <div key={`${index}-${contact}`}>
+                    <div key={index}>
                         <a
                             href={contact.href}
                             className="hover:text-red-500 underline"
