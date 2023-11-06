@@ -1,15 +1,17 @@
 "use client"; // required by useState
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { handleCommand } from "./commands";
 import { History, HistoryItem } from "./history";
 import { Prompt } from "./prompt";
 import { UserInput } from "./user_input";
 
 export function Term() {
-    let [history, setHistory] = useState(new Array<HistoryItem>());
-    let [submittedCommand, setSubmittedCommand] = useState<string | null>(
+    const [history, setHistory] = useState(new Array<HistoryItem>());
+    const [submittedCommand, setSubmittedCommand] = useState<string | null>(
         "welcome",
     );
+
+    const userInputRef = useRef<HTMLDivElement>(null);
 
     if (submittedCommand) {
         if (submittedCommand.trim() === "clear") {
@@ -29,11 +31,13 @@ export function Term() {
         setSubmittedCommand(null);
     }
 
+    useEffect(() => userInputRef.current?.scrollIntoView());
+
     return (
         <div className="h-max m-2 flex flex-col-reverse">
             <label>
                 <History history={history} />
-                <div className="flex flex-row">
+                <div className="flex flex-row" ref={userInputRef}>
                     <Prompt />
                     <UserInput
                         setSubmittedCommand={setSubmittedCommand}
