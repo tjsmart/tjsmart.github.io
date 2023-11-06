@@ -6,6 +6,8 @@ exports[`contact contact snapshot 1`] = `
     <a
       className="hover:text-red-500 underline"
       href="mailto:tjsmart@ucsc.edu"
+      rel="noopener noreferrer"
+      target="_blank"
     >
       <i
         className="fa fa-envelope"
@@ -18,6 +20,8 @@ exports[`contact contact snapshot 1`] = `
     <a
       className="hover:text-red-500 underline"
       href="https://www.github.com/tjsmart"
+      rel="noopener noreferrer"
+      target="_blank"
     >
       <i
         className="fa fa-github"
@@ -30,6 +34,8 @@ exports[`contact contact snapshot 1`] = `
     <a
       className="hover:text-red-500 underline"
       href="https://www.linkedin.com/in/tyler-smart-0a4a419b"
+      rel="noopener noreferrer"
+      target="_blank"
     >
       <i
         className="fa fa-linkedin-square"
@@ -41,7 +47,9 @@ exports[`contact contact snapshot 1`] = `
   <div>
     <a
       className="hover:text-red-500 underline"
-      href="https://www.scholar.google.com/citations?hl=en&user=r9supmkAAAAJ"
+      href="https://scholar.google.com/citations?user=r9supmkAAAAJ"
+      rel="noopener noreferrer"
+      target="_blank"
     >
       <i
         className="fa fa-graduation-cap"
