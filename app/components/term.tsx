@@ -34,7 +34,7 @@ export function Term() {
     useEffect(() => userInputRef.current?.scrollIntoView());
 
     return (
-        <div className="h-max m-2 flex flex-col-reverse">
+        <div className="h-fill m-2">
             <label>
                 <History history={history} />
                 <div className="flex flex-row" ref={userInputRef}>
