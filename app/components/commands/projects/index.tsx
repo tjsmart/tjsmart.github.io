@@ -1,1 +1,9 @@
-import "./iterum";
+import "./2023_05_iterum";
+import "./2023_03_allways";
+import "./2022_11_ast_names";
+import "./2022_08_gil_demo";
+import "./2021_04_thesis";
+import "./2020_07_sol_searching";
+import "./2020_02_pw2py";
+import "./2019_10_zfs";
+import "./2020_07_vim_qe";

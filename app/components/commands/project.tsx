@@ -87,6 +87,13 @@ registerCommand(project);
 
 function formatProjectDates(project: Project): string {
     const started = formatDate(project.started);
+    if (
+        project.ended &&
+        project.ended[0] === project.started[0] &&
+        project.ended[1] === project.started[1]
+    ) {
+        return started;
+    }
     const ended = project.ended ? formatDate(project.ended) : "present";
     return `${started} - ${ended}`;
 }
