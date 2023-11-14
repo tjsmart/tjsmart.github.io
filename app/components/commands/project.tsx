@@ -77,7 +77,7 @@ const project = new Command(
             //     }
             //     return `error: unknown contact '${arg}'`;
         } else {
-            return "error: contact takes at most a single argument";
+            return "error: project does not handle any argument";
         }
     },
     "Learn more about the projects I am currently working or recently completed!",
@@ -105,4 +105,5 @@ function formatDate(date: SimpleDate): string {
 
 if (process.env["NODE_DEV"] == "TEST") {
     module.exports.project = project;
+    module.exports.projects = projects;
 }
