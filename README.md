@@ -1,5 +1,7 @@
 # Tyler Smart's personal website
 
+[tjsmart.github.io](https://tjsmart.github.io)
+
 ## About
 
 Source code for my personal website. This app is designed to replicate modern terminal applications
